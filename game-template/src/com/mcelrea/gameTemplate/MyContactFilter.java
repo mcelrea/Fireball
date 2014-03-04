@@ -14,7 +14,10 @@ public class MyContactFilter implements ContactFilter
 
 	@Override
 	public boolean shouldCollide(Fixture fixtureA, Fixture fixtureB) {
-		// TODO Auto-generated method stub
+		
+		//--------------------------------------------------------------------------------------------------
+		//-------------------if a platform and a player collide---------------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		if(fixtureA.getUserData().equals("platform") && fixtureB.getUserData().equals("player"))
 		{
 			//get the bottom y value of both the platform and the player
@@ -31,8 +34,8 @@ public class MyContactFilter implements ContactFilter
 			{
 				Level_1.player1.setAlive(false);
 				Level_1.player1.setCanJump(false);
-			}
-		}
+			}//end if
+		}//end if
 		else if(fixtureA.getUserData().equals("player") && fixtureB.getUserData().equals("platform"))
 		{
 			//get the bottom y value of both the platform and the player
@@ -49,10 +52,16 @@ public class MyContactFilter implements ContactFilter
 			{
 				Level_1.player1.setAlive(false);
 				Level_1.player1.setCanJump(false);
-			}
-		}
+			}//end if
+		}//end else if
+		//--------------------------------------------------------------------------------------------------
+		//---------------------end if a platform and a player collide---------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		
 		
+		//--------------------------------------------------------------------------------------------------
+		//---------------------if a player and the jump power up collide------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		if(fixtureA.getUserData().equals("jump_power_up") && fixtureB.getUserData().equals("player"))
 		{
 			Level_1.player1.setCanJump(true);
@@ -63,19 +72,14 @@ public class MyContactFilter implements ContactFilter
 			Level_1.player1.setCanJump(true);
 			return false;
 		}
+		//--------------------------------------------------------------------------------------------------
+		//-------------------end if a player and the jump power up collide----------------------------------
+		//--------------------------------------------------------------------------------------------------
 		
 
-
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		//--------------------------------------------------------------------------------------------------
+		//----------------------if a player and the end door collide----------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		if(fixtureA.getUserData().equals("door") && fixtureB.getUserData().equals("player"))
 		{
 			((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
@@ -84,6 +88,9 @@ public class MyContactFilter implements ContactFilter
 		{
 			((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
 		}
+		//--------------------------------------------------------------------------------------------------
+		//---------------------end if a player and the end door collide-------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		
 		return true;
 	}
