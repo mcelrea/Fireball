@@ -1,0 +1,55 @@
+{
+	"com.badlogic.gdx.graphics.Color" : {
+		"white" : { 
+			"r" : 1,
+			"g" : 1,
+			"b" : 1,
+			"a" : 1},
+		"black" : {
+			"r" : 0,
+			"g" : 0,
+			"b" : 0,
+			"a" : 1}
+	},
+	"com.badlogic.gdx.graphics.g2d.BitmapFont" : {
+		"default-font" : {
+			"file" : "font/white.fnt"
+		}
+	},
+		
+	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle" : {
+		"default" : {
+			"font" : "default-font",
+			"fontColor" : "white"
+		}
+	},
+		
+	"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle" : {
+		"default" : {
+			"font" : "default-font",
+			"up" : "button.up",
+			"down" : "button.down",
+			"pressedOffsetX": 1,
+			"pressedOffsetY": -1
+		}
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle" : {
+		"default" : {
+			"font" : "default-font",
+			"fontColorUnselected" : "white",
+			"fontColorSelected" : "black",
+			"selection" : "default.selection"
+		}
+	},
+	
+	"com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle" : {
+		"default" : {
+			"hScroll" : "scroll",
+			"vScroll" : "scroll",
+			"hScrollKnob" : "button.up",
+			"vScrollKnob" : "button.up"
+		}
+	}	
+	
+}
