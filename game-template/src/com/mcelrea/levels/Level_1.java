@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -78,10 +79,17 @@ public class Level_1 implements Screen{
 		 */
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+		
+		//drawing the fireball player
 		Sprite s = ((Sprite)player1.getBody().getUserData());
 		s.setPosition(player1.getBody().getPosition().x - s.getWidth()/2, 
-				      player1.getBody().getPosition().y - s.getHeight()/2);
+				      player1.getBody().getPosition().y - s.getHeight()/2 + 0.15f);
 		s.draw(batch);
+		
+		//draw the ground
+		s = ((Sprite)ground.getUserData());
+		s.draw(batch);
+		
 		/*
 		 * Put some information text onto the screen.  This will help us
 		 * see what is happening in our game.  We will remove this when the game
@@ -201,6 +209,10 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		ground.getFixtureList().get(0).setUserData("platform");
+		Sprite temp = new Sprite(new Texture("img/stonefloor.png"));
+		temp.setSize(34, 2);
+		temp.setPosition(-17, -12);
+		ground.setUserData(temp);
 		groundShape.dispose();
 		
 		
