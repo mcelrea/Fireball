@@ -1,6 +1,5 @@
 package com.mcelrea.levels;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
@@ -8,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -20,11 +20,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mcelrea.gameTemplate.MyContactFilter;
 import com.mcelrea.gameTemplate.Player;
 import com.mcelrea.input.GamePlayInput;
-import com.mcelrea.screens.Menu;
 
 public class Level_1 implements Screen{
 
@@ -78,11 +76,11 @@ public class Level_1 implements Screen{
 		 * Begin the batch, which means to begin drawing to the screen
 		 * You cannot draw to the screen until batch.begin is called.
 		 */
+		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		
-		
-		player1.getImage().draw(batch);
-		
+		Sprite s = ((Sprite)player1.getBody().getUserData());
+		s.setPosition(player1.getBody().getPosition().x, player1.getBody().getPosition().y);
+		s.draw(batch);
 		/*
 		 * Put some information text onto the screen.  This will help us
 		 * see what is happening in our game.  We will remove this when the game
@@ -94,8 +92,8 @@ public class Level_1 implements Screen{
 		velFont.draw(batch, "jumping: " + player1.isJumping(), 170, 580);
 		velFont.draw(batch, "x: " + player1.getBody().getPosition().x, 170, 565);
 		velFont.draw(batch, "y: " + player1.getBody().getPosition().y, 170, 550);
-		velFont.draw(batch, "x: " + ((player1.getBody().getPosition().x*25)+400f), 400, 565);
-		velFont.draw(batch, "y: " + ((player1.getBody().getPosition().y*25)+300f), 400, 550);
+		velFont.draw(batch, "body x: " + player1.getBody().getPosition().x, 400, 565);
+		velFont.draw(batch, "body y: " + player1.getBody().getPosition().y, 400, 550);
 		velFont.draw(batch, "alive: " + player1.isAlive(), 170, 535);
 
 		//place platforms y-value
@@ -449,9 +447,6 @@ public class Level_1 implements Screen{
 				player1.getBody().setTransform(-15, 9, 0);
 			}//end if
 		}//end else
-		
-		player1.getImage().setPosition(((player1.getBody().getPosition().x*25)+Gdx.app.getGraphics().getWidth()/2), 
-				((player1.getBody().getPosition().y*25)+Gdx.app.getGraphics().getHeight()/2));
 
 	}//end updatePlayer1
 
