@@ -44,6 +44,7 @@ public class Level_1 implements Screen{
 	private Body box;
 	private Body plat1, plat2, plat3, plat4, plat5, plat6, plat7, plat8, ground;
 	private Body jumpPower;
+	private float jumpPowerAngle = 0;
 	Label velocityLabel;
 	SpriteBatch batch;
 	BitmapFont velFont;
@@ -105,21 +106,25 @@ public class Level_1 implements Screen{
 		//draw plat4
 		s = ((Sprite)plat4.getUserData());
 		s.draw(batch);
-		
+
 		//draw plat5
 		s = ((Sprite)plat5.getUserData());
 		s.draw(batch);
-		
+
 		//draw plat6
 		s = ((Sprite)plat6.getUserData());
 		s.draw(batch);
-		
+
 		//draw plat7
 		s = ((Sprite)plat7.getUserData());
 		s.draw(batch);
-		
+
 		//draw plat8
 		s = ((Sprite)plat8.getUserData());
+		s.draw(batch);
+
+		//draw power up
+		s = ((Sprite)jumpPower.getUserData());
 		s.draw(batch);
 
 		/*
@@ -150,7 +155,7 @@ public class Level_1 implements Screen{
 		batch.end();
 
 		//show the debug objects on the screen
-		//debugRenderer.render(world, camera.combined);
+		debugRenderer.render(world, camera.combined);
 	}//end render
 
 	@Override
@@ -451,13 +456,17 @@ public class Level_1 implements Screen{
 		fixtureDef.shape = circle;
 		fixtureDef.friction = 0.5f;
 		fixtureDef.restitution = 0;
-		body = world.createBody(bodyDef);
-		body.createFixture(fixtureDef);
+		jumpPower = world.createBody(bodyDef);
+		jumpPower.createFixture(fixtureDef);
 		/*
 		 * it's important to name every fixture so we can identify it in the MyContactFilter class
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		body.getFixtureList().get(0).setUserData("jump_power_up");
+		temp = new Sprite(new Texture("img/jumppower.png"));
+		temp.setSize(1, 1);
+		temp.setPosition(7.5f, -9.5f);
+		jumpPower.setUserData(temp);
 		circle.dispose();
 
 
