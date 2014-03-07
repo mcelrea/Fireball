@@ -50,6 +50,7 @@ public class Player
 		body.getFixtureList().get(0).setUserData("player");
 		body.setFixedRotation(true);
 		circleShape.dispose(); //erase the boxShape, we are done with it, free up memory
+
 	}//end Player constructor
 	
 	public void moveRight()

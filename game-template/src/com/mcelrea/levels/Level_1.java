@@ -94,6 +94,8 @@ public class Level_1 implements Screen{
 		velFont.draw(batch, "jumping: " + player1.isJumping(), 170, 580);
 		velFont.draw(batch, "x: " + player1.getBody().getPosition().x, 170, 565);
 		velFont.draw(batch, "y: " + player1.getBody().getPosition().y, 170, 550);
+		velFont.draw(batch, "x: " + ((player1.getBody().getPosition().x*25)+400f), 400, 565);
+		velFont.draw(batch, "y: " + ((player1.getBody().getPosition().y*25)+300f), 400, 550);
 		velFont.draw(batch, "alive: " + player1.isAlive(), 170, 535);
 
 		//place platforms y-value
@@ -131,7 +133,7 @@ public class Level_1 implements Screen{
 		camera = new OrthographicCamera(); //create a 2D camera to "look" at the game world
 		player1 = new Player(world, -15,9);//create a player in the world at (-15,9) x,y location
 		batch = new SpriteBatch();//create a new SpriteBatch for drawing images, text, etc onto the screen
-
+		
 		velFont = new BitmapFont();//create a new font.  This will use the default font.  We could specify an actual font with some more code
 
 		Gdx.input.setInputProcessor(new GamePlayInput());
@@ -448,8 +450,8 @@ public class Level_1 implements Screen{
 			}//end if
 		}//end else
 		
-		player1.getImage().setPosition(player1.getBody().getPosition().x, 
-				                       player1.getBody().getPosition().y);
+		player1.getImage().setPosition(((player1.getBody().getPosition().x*25)+Gdx.app.getGraphics().getWidth()/2), 
+				((player1.getBody().getPosition().y*25)+Gdx.app.getGraphics().getHeight()/2));
 
 	}//end updatePlayer1
 
