@@ -90,6 +90,10 @@ public class Level_1 implements Screen{
 		s = ((Sprite)ground.getUserData());
 		s.draw(batch);
 		
+		//draw plat1
+		s = ((Sprite)plat1.getUserData());
+		s.draw(batch);
+		
 		/*
 		 * Put some information text onto the screen.  This will help us
 		 * see what is happening in our game.  We will remove this when the game
@@ -191,6 +195,10 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat1.getFixtureList().get(0).setUserData("platform");
+		Sprite temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-17, 7.5f);
+		plat1.setUserData(temp);
 		groundShape.dispose();
 		
 		
@@ -209,7 +217,7 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		ground.getFixtureList().get(0).setUserData("platform");
-		Sprite temp = new Sprite(new Texture("img/stonefloor.png"));
+		temp = new Sprite(new Texture("img/stonefloor.png"));
 		temp.setSize(34, 2);
 		temp.setPosition(-17, -12);
 		ground.setUserData(temp);
