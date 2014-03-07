@@ -79,21 +79,49 @@ public class Level_1 implements Screen{
 		 */
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		
+
 		//drawing the fireball player
 		Sprite s = ((Sprite)player1.getBody().getUserData());
 		s.setPosition(player1.getBody().getPosition().x - s.getWidth()/2, 
-				      player1.getBody().getPosition().y - s.getHeight()/2 + 0.15f);
+				player1.getBody().getPosition().y - s.getHeight()/2 + 0.15f);
 		s.draw(batch);
-		
+
 		//draw the ground
 		s = ((Sprite)ground.getUserData());
 		s.draw(batch);
-		
+
 		//draw plat1
 		s = ((Sprite)plat1.getUserData());
 		s.draw(batch);
+
+		//draw plat2
+		s = ((Sprite)plat2.getUserData());
+		s.draw(batch);
+
+		//draw plat3
+		s = ((Sprite)plat3.getUserData());
+		s.draw(batch);
+
+		//draw plat4
+		s = ((Sprite)plat4.getUserData());
+		s.draw(batch);
 		
+		//draw plat5
+		s = ((Sprite)plat5.getUserData());
+		s.draw(batch);
+		
+		//draw plat6
+		s = ((Sprite)plat6.getUserData());
+		s.draw(batch);
+		
+		//draw plat7
+		s = ((Sprite)plat7.getUserData());
+		s.draw(batch);
+		
+		//draw plat8
+		s = ((Sprite)plat8.getUserData());
+		s.draw(batch);
+
 		/*
 		 * Put some information text onto the screen.  This will help us
 		 * see what is happening in our game.  We will remove this when the game
@@ -122,7 +150,7 @@ public class Level_1 implements Screen{
 		batch.end();
 
 		//show the debug objects on the screen
-		debugRenderer.render(world, camera.combined);
+		//debugRenderer.render(world, camera.combined);
 	}//end render
 
 	@Override
@@ -138,17 +166,17 @@ public class Level_1 implements Screen{
 
 	@Override
 	public void show() {
-		
+
 		world = new World(new Vector2(0, -9.81f), true);//create the world with (gravity, sleep)
 		debugRenderer = new Box2DDebugRenderer(); //create a debugrenderer which will draw all the box2d elements onto the screen for us
 		camera = new OrthographicCamera(); //create a 2D camera to "look" at the game world
 		player1 = new Player(world, -15,9);//create a player in the world at (-15,9) x,y location
 		batch = new SpriteBatch();//create a new SpriteBatch for drawing images, text, etc onto the screen
-		
+
 		velFont = new BitmapFont();//create a new font.  This will use the default font.  We could specify an actual font with some more code
 
 		Gdx.input.setInputProcessor(new GamePlayInput());
-		
+
 		/*
 		 * Tell the world to check the class MyContactFilter for specifications on
 		 * what should happen when two Box2D objects collide.  In the class MyContactFilter
@@ -200,8 +228,8 @@ public class Level_1 implements Screen{
 		temp.setPosition(-17, 7.5f);
 		plat1.setUserData(temp);
 		groundShape.dispose();
-		
-		
+
+
 
 		//ground
 		bodyDef.type = BodyType.StaticBody;
@@ -222,8 +250,8 @@ public class Level_1 implements Screen{
 		temp.setPosition(-17, -12);
 		ground.setUserData(temp);
 		groundShape.dispose();
-		
-		
+
+
 
 		//platform 2
 		bodyDef.type = BodyType.StaticBody;
@@ -239,9 +267,13 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat2.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-8, 4.5f);
+		plat2.setUserData(temp);
 		groundShape.dispose();
-		
-		
+
+
 
 		//platform 3
 		bodyDef.type = BodyType.StaticBody;
@@ -257,9 +289,13 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat3.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-13, 1.5f);
+		plat3.setUserData(temp);
 		groundShape.dispose();
-		
-		
+
+
 
 		//platform 4
 		bodyDef.type = BodyType.StaticBody;
@@ -275,9 +311,13 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat4.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-17, -1.5f);
+		plat4.setUserData(temp);
 		groundShape.dispose();
-		
-		
+
+
 
 		//platform 5
 		bodyDef.type = BodyType.StaticBody;
@@ -293,9 +333,13 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat5.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-11, -4.5f);
+		plat5.setUserData(temp);
 		groundShape.dispose();
-		
-		
+
+
 
 		//platform 6
 		bodyDef.type = BodyType.StaticBody;
@@ -311,10 +355,14 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat6.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-5, -7.5f);
+		plat6.setUserData(temp);
 		groundShape.dispose();
 
-		
-		
+
+
 		//platform 7
 		bodyDef.type = BodyType.StaticBody;
 		groundShape = new ChainShape();//ChainShape is a line that must contain at least two (x,y) points though it may contain more
@@ -329,10 +377,14 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat7.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(-1, 6.5f);
+		plat7.setUserData(temp);
 		groundShape.dispose();
 
-		
-		
+
+
 		//platform 8 (end platform)
 		bodyDef.type = BodyType.StaticBody;
 		groundShape = new ChainShape();//ChainShape is a line that must contain at least two (x,y) points though it may contain more
@@ -347,10 +399,14 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		plat8.getFixtureList().get(0).setUserData("platform");
+		temp = new Sprite(new Texture("img/stoneplatform.png"));
+		temp.setSize(7, 0.5f);
+		temp.setPosition(9, 7.5f);
+		plat8.setUserData(temp);
 		groundShape.dispose();
 
-		
-		
+
+
 		//left barrier
 		bodyDef.type = BodyType.StaticBody;
 		groundShape = new ChainShape();//ChainShape is a line that must contain at least two (x,y) points though it may contain more
@@ -367,8 +423,8 @@ public class Level_1 implements Screen{
 		body.getFixtureList().get(0).setUserData("wall");
 		groundShape.dispose();
 
-		
-		
+
+
 		//right barrier
 		bodyDef.type = BodyType.StaticBody;
 		groundShape = new ChainShape();//ChainShape is a line that must contain at least two (x,y) points though it may contain more
@@ -385,8 +441,8 @@ public class Level_1 implements Screen{
 		body.getFixtureList().get(0).setUserData("wall");
 		groundShape.dispose();
 
-		
-		
+
+
 		//jump powerup
 		bodyDef.type = BodyType.KinematicBody;
 		CircleShape circle = new CircleShape();
@@ -404,8 +460,8 @@ public class Level_1 implements Screen{
 		body.getFixtureList().get(0).setUserData("jump_power_up");
 		circle.dispose();
 
-		
-		
+
+
 		//door
 		bodyDef.type = BodyType.StaticBody;
 		bodyDef.position.set(new Vector2(13, 9));
@@ -423,7 +479,7 @@ public class Level_1 implements Screen{
 		 */
 		box.getFixtureList().get(0).setUserData("door");
 		boxShape.dispose(); //erase the boxShape, we are done with it, free up memory
-		 
+
 	}//end show
 
 
