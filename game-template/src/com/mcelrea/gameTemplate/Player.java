@@ -51,7 +51,7 @@ public class Player
 		body.setFixedRotation(true);
 		circleShape.dispose(); //erase the boxShape, we are done with it, free up memory
 		
-		image.setSize(0.5f, 0.5f);
+		image.setSize(1.2f, 1.2f);
 		body.setUserData(image);
 
 	}//end Player constructor

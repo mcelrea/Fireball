@@ -79,7 +79,8 @@ public class Level_1 implements Screen{
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		Sprite s = ((Sprite)player1.getBody().getUserData());
-		s.setPosition(player1.getBody().getPosition().x, player1.getBody().getPosition().y);
+		s.setPosition(player1.getBody().getPosition().x - s.getWidth()/2, 
+				      player1.getBody().getPosition().y - s.getHeight()/2);
 		s.draw(batch);
 		/*
 		 * Put some information text onto the screen.  This will help us
