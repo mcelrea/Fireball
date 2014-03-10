@@ -3,6 +3,7 @@ package com.mcelrea.levels;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -48,6 +49,8 @@ public class Level_1 implements Screen{
 	Label velocityLabel;
 	SpriteBatch batch;
 	BitmapFont velFont;
+	
+	Sound music;
 
 	@Override
 	public void render(float delta) {
@@ -181,6 +184,9 @@ public class Level_1 implements Screen{
 		velFont = new BitmapFont();//create a new font.  This will use the default font.  We could specify an actual font with some more code
 
 		Gdx.input.setInputProcessor(new GamePlayInput());
+		
+		music = Gdx.audio.newSound(Gdx.files.internal("sounds/abadox-blueforest.mp3"));
+		music.play();
 
 		/*
 		 * Tell the world to check the class MyContactFilter for specifications on
