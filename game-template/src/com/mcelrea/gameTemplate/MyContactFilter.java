@@ -36,7 +36,9 @@ public class MyContactFilter implements ContactFilter
 				Level_1.player1.setCanJump(false);
 			}//end if
 		}//end if
-		else if(fixtureA.getUserData().equals("player") && fixtureB.getUserData().equals("platform"))
+		System.out.println(fixtureA.getUserData());
+		System.out.println(fixtureB.getUserData());
+		if(fixtureA.getUserData().equals("player") && fixtureB.getUserData().equals("platform"))
 		{
 			//get the bottom y value of both the platform and the player
 			Vector2 pos = new Vector2();
@@ -54,6 +56,7 @@ public class MyContactFilter implements ContactFilter
 				Level_1.player1.setCanJump(false);
 			}//end if
 		}//end else if
+		
 		//--------------------------------------------------------------------------------------------------
 		//---------------------end if a platform and a player collide---------------------------------------
 		//--------------------------------------------------------------------------------------------------

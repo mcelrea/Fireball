@@ -462,7 +462,7 @@ public class Level_1 implements Screen{
 		 * it's important to name every fixture so we can identify it in the MyContactFilter class
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
-		body.getFixtureList().get(0).setUserData("jump_power_up");
+		jumpPower.getFixtureList().get(0).setUserData("jump_power_up");
 		temp = new Sprite(new Texture("img/jumppower.png"));
 		temp.setSize(1, 1);
 		temp.setPosition(7.5f, -9.5f);
