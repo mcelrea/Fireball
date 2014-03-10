@@ -2,6 +2,8 @@ package com.mcelrea.gameTemplate;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -27,12 +29,14 @@ public class Player
 	boolean alive; //is the player alive or not
 	boolean canJump; //can the player currently jump, a powerup is needed in order to give the player the jump ability
 	Sprite image; //the image of the player
+	Sound jumpSound;
 	
 	public Player(World world, float x, float y)
 	{
 		force = 20;//force applied when moving
 		alive = true;//the player starts out alive
 		image = new Sprite(new Texture("img/fireball.png"));//load the image of the player
+		jumpSound = Gdx.audio.newSound(Gdx.files.internal("sounds/Jump-SoundBible.com-1007297584.mp3"));
 		
 		BodyDef bodyDef = new BodyDef();
 		FixtureDef fixtureDef = new FixtureDef();
@@ -95,7 +99,7 @@ public class Player
 									body.getLocalCenter().x, 
 									body.getLocalCenter().y, 
 									true);
-			
+			jumpSound.play();
 			jumping = true;//set jumping to true since the player just jumped, this prevents infinite jumping ability
 		}//end if
 	}//end jump

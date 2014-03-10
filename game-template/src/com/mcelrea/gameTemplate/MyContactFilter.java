@@ -1,7 +1,10 @@
 package com.mcelrea.gameTemplate;
 
+import sun.org.mozilla.javascript.internal.ast.Jump;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
@@ -11,7 +14,7 @@ import com.mcelrea.screens.Menu;
 
 public class MyContactFilter implements ContactFilter
 {
-
+	Sound getJumpPowerSoundMaBobber_that_plays_when_player_hits_powerup_for_jump = Gdx.audio.newSound(Gdx.files.internal("sounds/End_Fx-Mike_Devils-724852498.mp3"));
 	@Override
 	public boolean shouldCollide(Fixture fixtureA, Fixture fixtureB) {
 		
@@ -68,11 +71,13 @@ public class MyContactFilter implements ContactFilter
 		if(fixtureA.getUserData().equals("jump_power_up") && fixtureB.getUserData().equals("player"))
 		{
 			Level_1.player1.setCanJump(true);
+			getJumpPowerSoundMaBobber_that_plays_when_player_hits_powerup_for_jump.play();
 			return false;
 		}
 		if(fixtureA.getUserData().equals("player") && fixtureB.getUserData().equals("jump_power_up"))
 		{
 			Level_1.player1.setCanJump(true);
+			getJumpPowerSoundMaBobber_that_plays_when_player_hits_powerup_for_jump.play();
 			return false;
 		}
 		//--------------------------------------------------------------------------------------------------
