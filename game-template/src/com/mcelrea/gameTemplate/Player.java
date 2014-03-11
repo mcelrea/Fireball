@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -30,6 +33,8 @@ public class Player
 	boolean canJump; //can the player currently jump, a powerup is needed in order to give the player the jump ability
 	Sprite image; //the image of the player
 	Sound jumpSound;
+	TextureRegion frame1, frame2, frame3, frame4;
+	Animation animation;
 	
 	public Player(World world, float x, float y)
 	{
@@ -37,6 +42,12 @@ public class Player
 		alive = true;//the player starts out alive
 		image = new Sprite(new Texture("img/fireball.png"));//load the image of the player
 		jumpSound = Gdx.audio.newSound(Gdx.files.internal("sounds/Jump-SoundBible.com-1007297584.mp3"));
+		
+		frame1 = new TextureRegion(new Texture("img/fireballFrame1.png"));
+		frame2 = new TextureRegion(new Texture("img/fireballFrame2.png"));
+		frame3 = new TextureRegion(new Texture("img/fireballFrame3.png"));
+		frame4 = new TextureRegion(new Texture("img/fireballFrame4.png"));
+		animation = new Animation(1/30f, frame1, frame2, frame3, frame4);
 		
 		BodyDef bodyDef = new BodyDef();
 		FixtureDef fixtureDef = new FixtureDef();
@@ -59,6 +70,11 @@ public class Player
 		body.setUserData(image);
 
 	}//end Player constructor
+	
+	public void draw(SpriteBatch batch, float delta)
+	{
+		
+	}
 	
 	public void moveRight()
 	{

@@ -89,6 +89,7 @@ public class Level_1 implements Screen{
 		s.setPosition(player1.getBody().getPosition().x - s.getWidth()/2, 
 				player1.getBody().getPosition().y - s.getHeight()/2 + 0.15f);
 		s.draw(batch);
+		player1.draw(batch, delta);
 
 		//draw the ground
 		s = ((Sprite)ground.getUserData());
