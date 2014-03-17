@@ -4,6 +4,7 @@ import sun.org.mozilla.javascript.internal.ast.Jump;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ChainShape;
@@ -90,11 +91,15 @@ public class MyContactFilter implements ContactFilter
 		//--------------------------------------------------------------------------------------------------
 		if(fixtureA.getUserData().equals("door") && fixtureB.getUserData().equals("player"))
 		{
-			((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
+			if(Gdx.input.isKeyPressed(Keys.SPACE))
+				((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
+			return false;
 		}
 		if(fixtureA.getUserData().equals("player") && fixtureB.getUserData().equals("door"))
 		{
-			((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
+			if(Gdx.input.isKeyPressed(Keys.SPACE))
+				((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
+			return false;
 		}
 		//--------------------------------------------------------------------------------------------------
 		//---------------------end if a player and the end door collide-------------------------------------

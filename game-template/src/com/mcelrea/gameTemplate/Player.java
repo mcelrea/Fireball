@@ -30,7 +30,7 @@ public class Player
 	final float MAX_VELOCITY = 5; //maximum speed the player can move left and right
 	final float jumpForce = 450; //the force applied when the jump button is pressed
 	boolean alive; //is the player alive or not
-	boolean canJump; //can the player currently jump, a powerup is needed in order to give the player the jump ability
+	boolean canJump = true; //can the player currently jump, a powerup is needed in order to give the player the jump ability
 	Sprite image; //the image of the player
 	Sound jumpSound;
 	TextureRegion frame1, frame2, frame3, frame4;

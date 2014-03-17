@@ -49,7 +49,7 @@ public class Level_1 implements Screen{
 	Label velocityLabel;
 	SpriteBatch batch;
 	BitmapFont velFont;
-	
+
 	Sound music;
 
 	@Override
@@ -84,8 +84,14 @@ public class Level_1 implements Screen{
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 
+		Sprite s;
+		
+		//draw door
+		s = ((Sprite)box.getUserData());
+		s.draw(batch);
+
 		//drawing the fireball player
-		Sprite s = ((Sprite)player1.getBody().getUserData());
+		s = ((Sprite)player1.getBody().getUserData());
 		s.setPosition(player1.getBody().getPosition().x - s.getWidth()/2, 
 				player1.getBody().getPosition().y - s.getHeight()/2 + 0.15f);
 		s.draw(batch);
@@ -131,6 +137,8 @@ public class Level_1 implements Screen{
 		s = ((Sprite)jumpPower.getUserData());
 		s.draw(batch);
 
+
+
 		/*
 		 * Put some information text onto the screen.  This will help us
 		 * see what is happening in our game.  We will remove this when the game
@@ -159,7 +167,7 @@ public class Level_1 implements Screen{
 		batch.end();
 
 		//show the debug objects on the screen
-		debugRenderer.render(world, camera.combined);
+		//debugRenderer.render(world, camera.combined);
 	}//end render
 
 	@Override
@@ -185,7 +193,7 @@ public class Level_1 implements Screen{
 		velFont = new BitmapFont();//create a new font.  This will use the default font.  We could specify an actual font with some more code
 
 		Gdx.input.setInputProcessor(new GamePlayInput());
-		
+
 		music = Gdx.audio.newSound(Gdx.files.internal("sounds/abadox-blueforest.mp3"));
 		music.play();
 
@@ -402,7 +410,7 @@ public class Level_1 implements Screen{
 		groundShape = new ChainShape();//ChainShape is a line that must contain at least two (x,y) points though it may contain more
 		groundShape.createChain(new Vector2[]{new Vector2(9, 8), new Vector2(17, 8)});//create the actual line by passing in (x,y) points
 		fixtureDef.shape = groundShape;
-		fixtureDef.friction = 0.0f;
+		fixtureDef.friction = 0.5f;
 		fixtureDef.restitution = 0;
 		plat8 = world.createBody(bodyDef);
 		plat8.createFixture(fixtureDef);
@@ -494,6 +502,10 @@ public class Level_1 implements Screen{
 		 * We will use these names to specify what happens when this fixture hits another fixture
 		 */
 		box.getFixtureList().get(0).setUserData("door");
+		temp = new Sprite(new Texture("img/door.png"));
+		temp.setSize(1, 2);
+		temp.setPosition(12.5f, 8);
+		box.setUserData(temp);
 		boxShape.dispose(); //erase the boxShape, we are done with it, free up memory
 
 	}//end show
