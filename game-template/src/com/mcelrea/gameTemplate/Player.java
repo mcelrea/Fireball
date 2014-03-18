@@ -35,6 +35,7 @@ public class Player
 	Sound jumpSound;
 	TextureRegion frame1, frame2, frame3, frame4;
 	Animation animation;
+	boolean onDoor;
 	
 	public Player(World world, float x, float y)
 	{
@@ -162,6 +163,14 @@ public class Player
 	public Sprite getImage() {
 		return image;
 	}//end getImage
+
+	public boolean isOnDoor() {
+		return onDoor;
+	}
+
+	public void setOnDoor(boolean onDoor) {
+		this.onDoor = onDoor;
+	}
 
 	//this method is no longer used!!!!!!!!!!!!!!
 	public void updateJump(World world)

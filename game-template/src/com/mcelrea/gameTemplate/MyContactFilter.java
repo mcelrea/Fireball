@@ -91,14 +91,12 @@ public class MyContactFilter implements ContactFilter
 		//--------------------------------------------------------------------------------------------------
 		if(fixtureA.getUserData().equals("door") && fixtureB.getUserData().equals("player"))
 		{
-			if(Gdx.input.isKeyPressed(Keys.SPACE))
-				((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
+			Level_1.player1.setOnDoor(true);
 			return false;
 		}
 		if(fixtureA.getUserData().equals("player") && fixtureB.getUserData().equals("door"))
 		{
-			if(Gdx.input.isKeyPressed(Keys.SPACE))
-				((Game)Gdx.app.getApplicationListener()).setScreen(new Menu());
+			Level_1.player1.setOnDoor(true);
 			return false;
 		}
 		//--------------------------------------------------------------------------------------------------

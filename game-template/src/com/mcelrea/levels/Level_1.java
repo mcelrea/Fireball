@@ -51,6 +51,43 @@ public class Level_1 implements Screen{
 	BitmapFont velFont;
 
 	Sound music;
+	
+	int level = 1;
+	
+	public void createLevel2()
+	{
+		float x = 5;
+		float y = 0;
+		plat1.setTransform(5, y, 0);
+		Sprite t = (Sprite) plat1.getUserData();
+		ChainShape shape = (ChainShape) plat1.getFixtureList().get(0).getShape();
+		Vector2 pos = new Vector2();
+		shape.getVertex(0, pos);
+		t.setPosition(pos.x+x, pos.y+y-0.5f);
+		
+		x = 5;
+		y = -4;
+		plat2.setTransform(x, y, 0);
+		t = (Sprite) plat2.getUserData();
+		shape = (ChainShape) plat2.getFixtureList().get(0).getShape();
+		pos = new Vector2();
+		shape.getVertex(0, pos);
+		t.setPosition(pos.x+x, pos.y+y-0.5f);
+		
+		x = -2;
+		y = 4;
+		plat3.setTransform(x, y, 0);
+		t = (Sprite) plat3.getUserData();
+		shape = (ChainShape) plat3.getFixtureList().get(0).getShape();
+		pos = new Vector2();
+		shape.getVertex(0, pos);
+		t.setPosition(pos.x+x, pos.y+y-0.5f);
+		
+		//world.destroyBody(plat2);
+		//world.destroyBody(plat3);
+		//world.destroyBody(plat4);
+		//world.destroyBody(plat5);
+	}
 
 	@Override
 	public void render(float delta) {
@@ -167,7 +204,7 @@ public class Level_1 implements Screen{
 		batch.end();
 
 		//show the debug objects on the screen
-		//debugRenderer.render(world, camera.combined);
+		debugRenderer.render(world, camera.combined);
 	}//end render
 
 	@Override
@@ -542,6 +579,13 @@ public class Level_1 implements Screen{
 				//run the jump code from class Player
 				player1.jump();
 			}//end if
+			if(Gdx.input.isKeyPressed(Keys.SPACE))
+			{
+				if(player1.isOnDoor())
+				{
+					createLevel2();
+				}
+			}
 		}//end if(player1.isAlive())
 		else //player must be dead
 		{
