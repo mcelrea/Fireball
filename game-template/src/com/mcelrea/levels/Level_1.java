@@ -22,6 +22,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Array;
+import com.mcelrea.gameTemplate.Cloud;
 import com.mcelrea.gameTemplate.MyContactFilter;
 import com.mcelrea.gameTemplate.Player;
 import com.mcelrea.input.GamePlayInput;
@@ -51,13 +53,16 @@ public class Level_1 implements Screen{
 	BitmapFont velFont;
 
 	Sound music;
+	Cloud cloud1;
+	
+	public static Array<Body> rainDrops = new Array<Body>();
 	
 	int level = 1;
 	
 	public void createLevel2()
 	{
-		float x = 5;
-		float y = 0;
+		float x = 5;//move the platform 5 meters to the right
+		float y = 0;//move the platform 0 meters up/down
 		plat1.setTransform(5, y, 0);
 		Sprite t = (Sprite) plat1.getUserData();
 		ChainShape shape = (ChainShape) plat1.getFixtureList().get(0).getShape();
@@ -65,8 +70,8 @@ public class Level_1 implements Screen{
 		shape.getVertex(0, pos);
 		t.setPosition(pos.x+x, pos.y+y-0.5f);
 		
-		x = 5;
-		y = -4;
+		x = 5;//move the platform 5 meters to the right
+		y = -4;//move the platform 4 meters down
 		plat2.setTransform(x, y, 0);
 		t = (Sprite) plat2.getUserData();
 		shape = (ChainShape) plat2.getFixtureList().get(0).getShape();
@@ -83,10 +88,7 @@ public class Level_1 implements Screen{
 		shape.getVertex(0, pos);
 		t.setPosition(pos.x+x, pos.y+y-0.5f);
 		
-		//world.destroyBody(plat2);
-		//world.destroyBody(plat3);
-		//world.destroyBody(plat4);
-		//world.destroyBody(plat5);
+		player1.getBody().setTransform(-12, -10, 0);
 	}
 
 	@Override
@@ -233,6 +235,8 @@ public class Level_1 implements Screen{
 
 		music = Gdx.audio.newSound(Gdx.files.internal("sounds/abadox-blueforest.mp3"));
 		music.play();
+		
+		cloud1 = new Cloud(8, 4, world);
 
 		/*
 		 * Tell the world to check the class MyContactFilter for specifications on
@@ -551,6 +555,18 @@ public class Level_1 implements Screen{
 	public void update()
 	{
 		updatePlayer1();
+		cloud1.act(world);
+		
+		for(int i=0; i < rainDrops.size; i++)
+		{
+			Body tempRain = rainDrops.get(i);
+			if(tempRain.getLinearVelocity().y > -0.1)
+			{
+				world.destroyBody(tempRain);
+				rainDrops.removeIndex(i);
+				i--;
+			}
+		}
 	}//end update
 
 	public void updatePlayer1()

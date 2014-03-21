@@ -18,7 +18,7 @@ public class MyContactFilter implements ContactFilter
 	Sound getJumpPowerSoundMaBobber_that_plays_when_player_hits_powerup_for_jump = Gdx.audio.newSound(Gdx.files.internal("sounds/End_Fx-Mike_Devils-724852498.mp3"));
 	@Override
 	public boolean shouldCollide(Fixture fixtureA, Fixture fixtureB) {
-		
+
 		//--------------------------------------------------------------------------------------------------
 		//-------------------if a platform and a player collide---------------------------------------------
 		//--------------------------------------------------------------------------------------------------
@@ -29,11 +29,11 @@ public class MyContactFilter implements ContactFilter
 			((ChainShape)fixtureA.getShape()).getVertex(0, pos);
 			float platform_y = pos.y;
 			float player_y = fixtureB.getBody().getPosition().y - 0.5f;
-			
+
 			//if the platform is beneath my player
 			if(platform_y < player_y)
 				Level_1.player1.setJumping(false);
-			
+
 			if(Level_1.player1.getBody().getLinearVelocity().y < -12)
 			{
 				Level_1.player1.setAlive(false);
@@ -49,23 +49,23 @@ public class MyContactFilter implements ContactFilter
 			((ChainShape)fixtureB.getShape()).getVertex(0, pos);
 			float platform_y = pos.y;
 			float player_y = fixtureA.getBody().getPosition().y - 0.5f;
-			
+
 			//if the platform is beneath my player
 			if(platform_y < player_y)
 				Level_1.player1.setJumping(false);
-			
+
 			if(Level_1.player1.getBody().getLinearVelocity().y < -12)
 			{
 				Level_1.player1.setAlive(false);
 				Level_1.player1.setCanJump(false);
 			}//end if
 		}//end else if
-		
+
 		//--------------------------------------------------------------------------------------------------
 		//---------------------end if a platform and a player collide---------------------------------------
 		//--------------------------------------------------------------------------------------------------
-		
-		
+
+
 		//--------------------------------------------------------------------------------------------------
 		//---------------------if a player and the jump power up collide------------------------------------
 		//--------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ public class MyContactFilter implements ContactFilter
 		//--------------------------------------------------------------------------------------------------
 		//-------------------end if a player and the jump power up collide----------------------------------
 		//--------------------------------------------------------------------------------------------------
-		
+
 
 		//--------------------------------------------------------------------------------------------------
 		//----------------------if a player and the end door collide----------------------------------------
@@ -102,6 +102,23 @@ public class MyContactFilter implements ContactFilter
 		//--------------------------------------------------------------------------------------------------
 		//---------------------end if a player and the end door collide-------------------------------------
 		//--------------------------------------------------------------------------------------------------
+
+
+		//--------------------------------------------------------------------------------------------------
+		//----------------------if a cloud and rain collide----------------------------------------
+		//--------------------------------------------------------------------------------------------------
+		if(fixtureA.getUserData().equals("cloud") && fixtureB.getUserData().equals("rain"))
+		{
+			return false;
+		}
+		if(fixtureA.getUserData().equals("rain") && fixtureB.getUserData().equals("cloud"))
+		{
+			return false;
+		}
+		//--------------------------------------------------------------------------------------------------
+		//---------------------end if a cloud and rain collide-------------------------------------
+		//--------------------------------------------------------------------------------------------------
+		
 		
 		return true;
 	}
